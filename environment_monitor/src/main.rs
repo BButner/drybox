@@ -46,10 +46,10 @@ async fn main() {
     render_prometheus(server_options, Options::default(), |_, _| async move {
         let reading = loop {
             let reading = dht11.get_reading();
-            let temp_f = reading.temperature * 9 / 5 + 32;
+            let temp_f = reading.temperature * 9.0 / 5.0 + 32.0;
 
             // This is due to a bug in my library that I still need to fix...
-            if reading.temperature < 120 {
+            if reading.temperature < 120.0 {
                 break reading;
             }
         };
@@ -67,7 +67,7 @@ async fn main() {
             .render_and_append_instance(
                 &PrometheusInstance::new()
                     .with_label("metric", "temperature")
-                    .with_value((reading.temperature * 9 / 5 + 32) as f64),
+                    .with_value((reading.temperature * 9.0 / 5.0 + 32.0) as f64),
             )
             .render())
     })
