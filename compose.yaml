@@ -6,6 +6,8 @@ services:
       - ./open_telemetry/config.yaml:/etc/otelcol-contrib/config.yaml
     ports:
       - 8888:8888
+    env_file:
+      - ./.env
     networks:
       drybox:
         ipv4_address: 10.5.0.5
@@ -15,6 +17,8 @@ services:
       context: ./environment_monitor
     depends_on:
       - open-telemetry-collector
+    env_file:
+      - ./.env
     networks:
       drybox:
         ipv4_address: 10.5.0.6

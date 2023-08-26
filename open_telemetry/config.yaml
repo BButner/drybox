@@ -6,7 +6,7 @@ receivers:
           scrape_interval: ${env:DRYBOX_SCRAPE_INTERVAL}
           metrics_path: ${env:DRYBOX_METRICS_PATH}
           static_configs:
-            - targets: ${env:DRYBOX_TARGETS}
+            - targets: ["${env:DRYBOX_TARGET}"]
 
 exporters:
   prometheusremotewrite:

@@ -6,3 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+dotenv = "0.15.0"
+prometheus_exporter_base = { version = "1.4.0", features = ["hyper_server"] }
+tokio = { version = "1.32.0", features = ["rt", "rt-multi-thread", "macros"] }
