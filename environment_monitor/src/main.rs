@@ -45,7 +45,7 @@ async fn main() {
 
     render_prometheus(server_options, Options::default(), |_, _| async move {
         let reading = loop {
-            let reading = dht11.read();
+            let reading = dht11.get_reading();
             let temp_f = reading.temperature * 9 / 5 + 32;
 
             // This is due to a bug in my library that I still need to fix...
