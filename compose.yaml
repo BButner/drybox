@@ -9,6 +9,15 @@ services:
     networks:
       drybox:
         ipv4_address: 10.5.0.5
+  environment-monitor:
+    restart: unless-stopped
+    build:
+      context: ./environment_monitor
+    depends_on:
+      - open-telemetry-collector
+    networks:
+      drybox:
+        ipv4_address: 10.5.0.6
 
 networks:
   drybox:
