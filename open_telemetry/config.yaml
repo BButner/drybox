@@ -1,0 +1,29 @@
+receivers:
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: ${env:DRYBOX_JOB_NAME}
+          scrape_interval: ${env:DRYBOX_SCRAPE_INTERVAL}
+          metrics_path: ${env:DRYBOX_METRICS_PATH}
+          static_configs:
+            - targets: ${env:DRYBOX_TARGETS}
+
+exporters:
+  prometheusremotewrite:
+    endpoint: ${env:PROMETHEUS_REMOTE_ENDPOINT}
+    headers:
+      Authorization: ${env:PROMETHEUS_REMOTE_AUTHORIZATION}
+
+  logging:
+    loglevel: ${env:LOG_LEVEL}
+
+service:
+  telemetry:
+    logs:
+      level: ${env:LOG_LEVEL}
+    metrics:
+      address: ${env:METRICS_ADDRESS}
+  pipelines:
+    metrics:
+      receivers: [prometheus]
+      exporters: [prometheusremotewrite]

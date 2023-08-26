@@ -1,0 +1,9 @@
+# Environment Variables
+.env
+
+# Rust
+debug/
+target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
