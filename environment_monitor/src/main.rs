@@ -78,7 +78,7 @@ async fn main() {
                 let temp_f = reading.temperature * 9.0 / 5.0 + 32.0;
 
                 // This is due to a bug in my library that I still need to fix...
-                if temp_f < 120.0 {
+                if temp_f < 120.0 && reading.humidity < 100.0 {
                     break reading;
                 }
             };
